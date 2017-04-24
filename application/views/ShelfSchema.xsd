@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+<!-- Attributes BEGIN -->
+	<xs:attribute name="Category">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Horror"/>
+        		<xs:enumeration value="Sci-Fi"/>
+        		<xs:enumeration value="Adventure"/>
+       			<xs:enumeration value="Romance"/>
+        		<xs:enumeration value="Action"/>
+        		<xs:enumeration value="Non-fiction"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+<!-- Attributes END -->
+
+<!--Review BEGIN -->
+	<xs:complexType name="Reviews">
+	    <xs:sequence>
+	        <xs:element ref="Vote"/>
+	        <xs:element ref="Reviewer"/>
+	        <xs:element ref="ReviewContent"/>
+	    </xs:sequence>
+	</xs:complexType>
+
+    <xs:element name="Vote">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:pattern value="0|1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="ReviewContent">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+				<xs:minLength value="20"/>
+				<xs:maxLength value="150"/>
+			</xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    
+    <xs:element name="Reviewer" default="Anonymous">
+		<xs:simpleType>
+		    <xs:restriction base="xs:string">
+				<xs:minLength value="6"/>
+				<xs:maxLength value="15"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+<!--Review END-->	
+
+    <xs:element name="Price">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:totalDigits value="5"/>
+                <xs:fractionDigits value="2"/>
+                <xs:minExclusive value="0"/>
+                <xs:maxExclusive value="1000"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+	<xs:element name="Author">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FName" type="xs:string"/>
+				<xs:element name="LName" type="xs:string"/>
+				<xs:element name="MInit" type="xs:string" nillable="true"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	
+<!--Publishing BEGIN -->
+	<xs:complexType name="PublicationDetails">
+		<xs:sequence>
+			<xs:element name="PublicationHouse">
+				<xs:complexType>
+				    <xs:sequence>
+				        <xs:element name="Country" type="Country" minOccurs="1" maxOccurs="1"/>
+              			<xs:element name="PublishingName" minOccurs="1" maxOccurs="1"/>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+      		<xs:element name="PublishingDate" type="xs:date" maxOccurs="1" />
+      		<xs:element name="ISBN" type="ISBN" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="City">
+	    <xs:simpleType>
+	        <xs:restriction base="xs:string">
+	            <xs:pattern value="([a-zA-Z])*"/>
+	        </xs:restriction>
+	    </xs:simpleType>
+	</xs:element>
+	
+	<xs:complexType name="Country">
+		<xs:sequence>
+			<xs:element ref="City"/>
+		</xs:sequence>
+	</xs:complexType>
+
+<!--ISBN BEGIN-->
+  <xs:complexType name="ISBN">
+    <xs:sequence>
+      <xs:element ref="PrefixElem" minOccurs="1" maxOccurs="1"/>
+      <xs:element ref="RegGroupElem" minOccurs="1" maxOccurs="1"/>
+      <xs:element ref="RegistrantElem" minOccurs="1" maxOccurs="1"/>
+      <xs:element ref="PubElem" minOccurs="1" maxOccurs="1"/>
+      <xs:element ref="CheckDigit" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="PrefixElem">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="978"/>
+        <xs:enumeration value="979"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="RegGroupElem">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="99999"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="RegistrantElem">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="9999999"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="PubElem">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="999999"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="CheckDigit">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="9"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+<!--ISBN END-->
+
+<!--Publishing END -->
+	<xs:complexType name="BookInfo">
+	    <xs:sequence>
+	        <xs:element name="Title" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	        <xs:element ref="Author" minOccurs="1" maxOccurs="unbounded"/>
+	        <xs:element name="PublicationDetails" type="PublicationDetails" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Synopsis" minOccurs="1" maxOccurs="1"> 
+				<xs:simpleType>
+            		<xs:restriction base="xs:string">
+						<xs:minLength value="20"/>
+						<xs:maxLength value="800"/>
+					</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Book">
+	    <xs:sequence>
+	        <xs:element name="Info" type="BookInfo" minOccurs="1"/>
+	        <xs:element ref="Price"/>
+		    <xs:element name="AverageVotes" default="0" maxOccurs="1">
+	        	<xs:simpleType>
+	        		<xs:restriction base="xs:decimal"/>
+	        	</xs:simpleType>
+	        </xs:element>
+	        <xs:element name="Review" type="Reviews" minOccurs="0" maxOccurs="unbounded"/>
+	    </xs:sequence>
+	    <xs:attribute ref="Category"/>
+	</xs:complexType>
+	
+	<xs:element name="BookStore">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="Book" type="Book" minOccurs="1" maxOccurs="unbounded"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+</xs:schema>	
