@@ -17,14 +17,15 @@
 					<span id="searchModalClose">&times;</span>
 					<h1>Search</h1>
 					<form>
-						<input type="search" placeholder="Title, Author, Publication Date">
+						<input type="text" placeholder="Title, Author, Publication Date" onkeyup="liveSearch(this.value)">
 					</form>
+					<h2 class="result"></h2>
 				</div>
 			</div>
 
 			<div class="banner">
 		 	 	<img class="logo" src="<?=base_url()?>/assets/images/Banner.png" alt="Shelf">
-		 	 	<h1>Bili kayo please parang awa niyo na</h1>
+		 	 	<h1>Where your next book awaits!</h1>
 	 	 	</div>
 
 			<div id="navId" class="topnav">
@@ -92,6 +93,25 @@
 			$('.searchModal').hide();
 		});
 	</script> 	
+
+	<script>
+		function liveSearch(str){
+			var xhttp;
+			if (window.XMLHttpRequest) {
+ 			   xhttp = new XMLHttpRequest();
+    		} else {
+    			// code for IE6, IE5
+    			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.onreadystatechange = function() {
+	  			if (this.readyState == 4 && this.status == 200) {
+	    			document.getElementById("result").innerHTML = this.responseText;
+	  			}
+			};
+			xhttp.open("GET", "<?=base_url()?>Load.php?q=" + str, true);
+			xhttp.send();
+		}
+	</script>
 
 	</body>
 </html>
