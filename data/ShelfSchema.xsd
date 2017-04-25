@@ -6,12 +6,13 @@
 	<xs:attribute name="Category">
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
-				<xs:enumeration value="Horror"/>
-        		<xs:enumeration value="Sci-Fi"/>
-        		<xs:enumeration value="Adventure"/>
-       			<xs:enumeration value="Romance"/>
-        		<xs:enumeration value="Action"/>
+        		<xs:enumeration value="Action/Adventure"/>
+        		<xs:enumeration value="Children's"/>
+				<xs:enumeration value="Mystery/Thriller"/>
         		<xs:enumeration value="Non-fiction"/>
+        		<xs:enumeration value="Religion"/>
+       			<xs:enumeration value="Romance"/>
+        		<xs:enumeration value="Sci-Fi"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:attribute>
@@ -78,14 +79,7 @@
 <!--Publishing BEGIN -->
 	<xs:complexType name="PublicationDetails">
 		<xs:sequence>
-			<xs:element name="PublicationHouse">
-				<xs:complexType>
-				    <xs:sequence>
-				        <xs:element name="Country" type="Country" minOccurs="1" maxOccurs="1"/>
-              			<xs:element name="PublishingName" minOccurs="1" maxOccurs="1"/>
-				    </xs:sequence>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="PublicationHouse" type="xs:string" minOccurs="1" maxOccurs="1"/>
       		<xs:element name="PublishingDate" type="xs:date" maxOccurs="1" />
       		<xs:element name="ISBN" type="ISBN" maxOccurs="1"/>
 		</xs:sequence>
