@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BookStore xmlns=""
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="ShelfSchema.xsd">
+	<Book Category="Romance">
+		<Info>
+			<Title>Fifty Shades of Grey</Title>
+			<Author>
+				<FName>EL</FName>
+				<LName>James</LName>
+				<MInit></MInit>
+			</Author>
+			<PublicationDetails>
+				<PublicationHouse>
+					<Country>
+						<City>London</City>
+					</Country>
+					<PublishingName>Vintage Books</PublishingName>
+				</PublicationHouse>
+				<PublishingDate>2011-06-20</PublishingDate>
+				<ISBN>
+					<PrefixElem>978</PrefixElem>
+					<RegGroupElem>1</RegGroupElem>
+					<RegistrantElem>61213</RegistrantElem>
+					<PubElem>028</PubElem>
+					<CheckDigit>6</CheckDigit>
+				</ISBN>
+			</PublicationDetails>
+			<Synopsis>
+				When literature student Anastasia Steele goes to interview young entrepreneur Christian Grey,
+				she encounters a man who is beautiful, brilliant, and intimidating. The unworldly, innocent 
+				Ana is startled to realize she wants this man and, despite his enigmatic reserve, finds 
+				she is desperate to get close to him. Unable to resist Ana’s quiet beauty, wit, and 
+				independent spirit, Grey admits he wants her, too—but on his own terms.
+			</Synopsis>
+		</Info>
+		<Price>455</Price>
+		<AverageVotes>0</AverageVotes>
+	</Book>
+</BookStore>
