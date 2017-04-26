@@ -6,11 +6,11 @@
 	<xs:attribute name="Category">
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
-        		<xs:enumeration value="Action/Adventure"/>
-        		<xs:enumeration value="Children's"/>
+        		<xs:enumeration value="Religion"/>
+        		<xs:enumeration value="Young Adult"/>
 				<xs:enumeration value="Mystery/Thriller"/>
         		<xs:enumeration value="Non-fiction"/>
-        		<xs:enumeration value="Religion"/>
+        		<xs:enumeration value="Fantasy"/>
        			<xs:enumeration value="Romance"/>
         		<xs:enumeration value="Sci-Fi"/>
 			</xs:restriction>
@@ -84,20 +84,7 @@
       		<xs:element name="ISBN" type="ISBN" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
-	
-	<xs:element name="City">
-	    <xs:simpleType>
-	        <xs:restriction base="xs:string">
-	            <xs:pattern value="([a-zA-Z])*"/>
-	        </xs:restriction>
-	    </xs:simpleType>
-	</xs:element>
-	
-	<xs:complexType name="Country">
-		<xs:sequence>
-			<xs:element ref="City"/>
-		</xs:sequence>
-	</xs:complexType>
+<!-- Publishing END -->
 
 <!--ISBN BEGIN-->
   <xs:complexType name="ISBN">
@@ -162,11 +149,25 @@
 	        <xs:element name="Title" type="xs:string" minOccurs="1" maxOccurs="1"/>
 	        <xs:element ref="Author" minOccurs="1" maxOccurs="unbounded"/>
 	        <xs:element name="PublicationDetails" type="PublicationDetails" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PageCount">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MediaType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Paperback"/>
+						<xs:enumeration value="Hardcover"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 			<xs:element name="Synopsis" minOccurs="1" maxOccurs="1"> 
 				<xs:simpleType>
             		<xs:restriction base="xs:string">
 						<xs:minLength value="20"/>
-						<xs:maxLength value="800"/>
 					</xs:restriction>
         		</xs:simpleType>
         	</xs:element>
